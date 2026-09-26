@@ -220,26 +220,36 @@
   }
 
   // --- Tab Routing ---
-  function initNavigation() {
+  function switchTab(targetTab) {
     const navItems = document.querySelectorAll('.nav-item');
     const tabContents = document.querySelectorAll('.tab-content');
 
+    navItems.forEach((n) => {
+      n.classList.toggle('active', n.getAttribute('data-tab') === targetTab);
+    });
+    tabContents.forEach((t) => {
+      t.classList.toggle('active', t.id === `tab-${targetTab}`);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function initNavigation() {
+    const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach((item) => {
       item.addEventListener('click', (e) => {
         e.preventDefault();
         const targetTab = item.getAttribute('data-tab');
-
-        navItems.forEach((n) => n.classList.remove('active'));
-        tabContents.forEach((t) => t.classList.remove('active'));
-
-        item.classList.add('active');
-        const activeTabEl = document.getElementById(`tab-${targetTab}`);
-        if (activeTabEl) {
-          activeTabEl.classList.add('active');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+        switchTab(targetTab);
+        if (history.replaceState) {
+          history.replaceState(null, '', `#${targetTab}`);
         }
       });
     });
+
+    const initialHash = window.location.hash.replace('#', '');
+    if (['today', 'week', 'ladder', 'rules'].includes(initialHash)) {
+      switchTab(initialHash);
+    }
   }
 
   // --- Service Worker ---
@@ -254,9 +264,19 @@
   }
 
   // --- Initialization ---
-  document.addEventListener('DOMContentLoaded', () => {
-    initNavigation();
-    renderTodayTab();
-    registerServiceWorker();
-  });
+  function init() {
+    try {
+      initNavigation();
+      renderTodayTab();
+      registerServiceWorker();
+    } catch (err) {
+      console.error('[TS-Ops] App init error:', err);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
