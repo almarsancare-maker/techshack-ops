@@ -11,40 +11,42 @@
   const DAY_SCHEDULES = {
     1: { // Monday
       title: 'Monday',
-      theme: 'Batch & Film',
-      focus: 'Pick 3 units + 1 backup, film moments, run batch day',
+      theme: 'Batch, Film & Schedule',
+      focus: 'Pick 3 units, film moments, run batch day, schedule Tue + Thu in Meta Business Suite',
       tasks: [
         { id: 'mon_1', time: '10:00 AM', text: 'Select 3 Bench Units + 1 Backup', desc: 'Pick interesting repair cases (~50-100 tickets/month bench volume).' },
         { id: 'mon_2', time: '10:15 AM', text: 'Film 3 Repairs (5 min each)', desc: 'Phone propped: Problem moment → Fix moment → Reveal.' },
         { id: 'mon_3', time: '11:00 AM', text: "Run 'batch day' in Antigravity", desc: 'Send unit list → receive drafts → red-pen Bislish → reply approved.', trigger: 'batch day' },
-        { id: 'mon_4', time: '5:00 PM', text: "Confirm Tomorrow's Post Ready", desc: 'Verify Reel A caption and clip are locked for Tuesday 11:30 AM.' }
+        { id: 'mon_4', time: '12:00 PM', text: 'Native Schedule in Meta Business Suite', desc: 'Schedule Reel A (Tue 11:30 AM) & Reel B (Thu 5:30 PM). TikTok + Shorts in their schedulers. Saturday is held as FLEX.' },
+        { id: 'mon_5', time: '5:00 PM', text: 'Confirm Scheduled Status in Meta', desc: 'Verify both posts show as Scheduled in Meta Business Suite calendar.' }
       ]
     },
     2: { // Tuesday
       title: 'Tuesday',
-      theme: 'Post 1 (Reel A)',
-      focus: 'Publish Reel A at 11:30 AM, reply to comments 12-2 PM',
+      theme: 'Reel A Auto-Posts',
+      focus: 'Reel A publishes automatically at 11:30 AM via Meta, reply comments 12-2 PM',
       tasks: [
-        { id: 'tue_1', time: '11:30 AM', text: "Run 'post day' (Reel A Live)", desc: 'Publish approved Reel to FB + Story + TikTok + YouTube Shorts.', trigger: 'post day' },
-        { id: 'tue_2', time: '12:00–2:00 PM', text: 'Reply to EVERY Comment', desc: 'First 2 hours decide the algorithmic reach. Answer all inquiries.' }
+        { id: 'tue_1', time: '11:30 AM', text: 'Reel A Goes LIVE (Auto-Scheduled)', desc: 'Published automatically by Meta Business Suite to FB Reel + Story. Verify live link.' },
+        { id: 'tue_2', time: '12:00–2:00 PM', text: 'Reply to EVERY Comment', desc: 'First 2 hours decide the algorithmic reach. Answer all customer inquiries.' }
       ]
     },
     3: { // Wednesday
       title: 'Wednesday',
-      theme: 'Engage & Check',
-      focus: "Run 'comments', engage audience, check for 20k double-downs",
+      theme: 'Engage & Double-Down Check',
+      focus: "Run 'comments', engage audience, check if any post hit 20k views or 10+ DMs",
       tasks: [
         { id: 'wed_1', time: '9:00 AM', text: "Run 'comments' in Antigravity", desc: 'Personally reply to customer repair questions for 30 minutes.', trigger: 'comments' },
-        { id: 'wed_2', time: 'All Day', text: 'Double-Down Verification', desc: 'Any post >20k views or 10+ DMs in 48h → Film Part 2 TODAY for next slot.' }
+        { id: 'wed_2', time: 'All Day', text: 'Double-Down Check (Saturday Slot)', desc: 'Any post >20k views or 10+ DMs in 48h → Film Part 2 TODAY (takes Saturday 1:00 PM slot).' }
       ]
     },
     4: { // Thursday
       title: 'Thursday',
-      theme: 'Post 2 (Reel B)',
-      focus: 'Publish Reel B at 5:30 PM, golden-hour comment replies',
+      theme: 'Reel B Auto-Posts & Sat Lock',
+      focus: 'Reel B publishes at 5:30 PM, golden-hour comments, lock Saturday 1:00 PM slot',
       tasks: [
-        { id: 'thu_1', time: '5:30 PM', text: "Run 'post day' (Reel B Live)", desc: 'Publish approved Reel B to FB + Story + TikTok + Shorts.', trigger: 'post day' },
-        { id: 'thu_2', time: '5:30–7:30 PM', text: 'Golden-Hour Comment Replies', desc: 'Reply to comments during evening peak commuting hours.' }
+        { id: 'thu_1', time: '5:30 PM', text: 'Reel B Goes LIVE (Auto-Scheduled)', desc: 'Published automatically by Meta Business Suite. Verify live link.' },
+        { id: 'thu_2', time: '5:30–7:30 PM', text: 'Golden-Hour Comment Replies', desc: 'Reply to comments during evening peak commuting hours.' },
+        { id: 'thu_3', time: '8:00 PM', text: 'Schedule Saturday 1:00 PM Slot', desc: 'If double-down fired on Wed → schedule Part 2; else schedule planned Reel #3 in Meta.' }
       ]
     },
     5: { // Friday
@@ -53,15 +55,15 @@
       focus: 'Film backup unit (1 reel in bank), rest if buffer is full',
       tasks: [
         { id: 'fri_1', time: 'Morning', text: 'Film Backup Unit', desc: 'Rule: Always keep 1 approved Reel in the bank.' },
-        { id: 'fri_2', time: 'Afternoon', text: 'Buffer Check or Rest', desc: 'If backup is locked, rest. Consistency beats heroics.' }
+        { id: 'fri_2', time: 'Afternoon', text: 'Buffer Check or Rest', desc: 'If backup is locked in bank, rest. Consistency beats heroics.' }
       ]
     },
     6: { // Saturday
       title: 'Saturday',
-      theme: 'Post 3 (Reel C)',
-      focus: 'Publish Reel C at 1:00 PM, golden-hour comment replies',
+      theme: 'Reel C / Part 2 Auto-Posts',
+      focus: 'Weekend Reel publishes at 1:00 PM via Meta, golden-hour comment replies',
       tasks: [
-        { id: 'sat_1', time: '1:00 PM', text: "Run 'post day' (Reel C Live)", desc: 'Publish approved Reel C to FB + Story + TikTok + Shorts.', trigger: 'post day' },
+        { id: 'sat_1', time: '1:00 PM', text: 'Weekend Reel Goes LIVE (Auto-Scheduled)', desc: 'Reel C or Double-Down Part 2 published automatically by Meta Business Suite.' },
         { id: 'sat_2', time: '1:00–3:00 PM', text: 'Weekend Traffic Engagement', desc: 'Reply to comments during weekend afternoon leisure browsing.' }
       ]
     },

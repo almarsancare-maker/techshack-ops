@@ -1,6 +1,6 @@
-// TechShack Ops PWA — Service Worker (v2)
+// TechShack Ops PWA — Service Worker (v3)
 // Bumping cache version flushes stale builds across all client devices
-const CACHE_NAME = 'techshack-ops-v2';
+const CACHE_NAME = 'techshack-ops-v3';
 
 const ASSETS = [
   './',
