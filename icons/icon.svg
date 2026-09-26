@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F17"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="50%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect x="12" y="12" width="488" height="488" rx="100" fill="none" stroke="#334155" stroke-width="4"/>
+
+  <!-- Circuit traces -->
+  <path d="M 80 160 L 160 160 L 200 200" fill="none" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="80" cy="160" r="10" fill="#38BDF8"/>
+  
+  <path d="M 432 352 L 352 352 L 312 312" fill="none" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="432" cy="352" r="10" fill="#F59E0B"/>
+
+  <!-- Central 'TS' / TechShack Emblem -->
+  <g filter="url(#glow)">
+    <!-- Main T bar -->
+    <path d="M 120 160 L 392 160 L 372 210 L 286 210 L 286 380 L 226 380 L 226 210 L 140 210 Z" fill="url(#gold)"/>
+    <!-- Lightning Bolt Accent / S curve -->
+    <path d="M 290 230 L 350 230 L 305 300 L 360 300 L 250 420 L 275 330 L 230 330 Z" fill="url(#cyan)"/>
+  </g>
+
+  <!-- Tagline Text -->
+  <text x="256" y="460" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="900" fill="#F8FAFC" text-anchor="middle" letter-spacing="4">TECHSHACK</text>
+</svg>

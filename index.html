@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>TechShack Ops</title>
+  
+  <!-- PWA & Mobile Meta -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#0B0F17">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TechShack Ops">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
+  
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Top App Bar -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+      </div>
+      <div class="brand-title">TECHSHACK <span>OPS</span></div>
+    </div>
+    <div class="header-badges">
+      <span class="badge badge-gold" id="display-day-number">DAY 1</span>
+      <span class="badge badge-green" id="streak-count">🔥 1d Streak</span>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- ================= TAB 1: TODAY ================= -->
+    <section id="tab-today" class="tab-content active">
+      <!-- Hero Card -->
+      <div class="hero-card">
+        <div class="hero-header">
+          <div>
+            <div class="day-label">Current Cycle</div>
+            <div class="day-title" id="display-day-title">Monday — Batch & Film</div>
+            <div class="day-focus" id="display-day-focus">Pick 3 units + 1 backup, film moments, run batch day</div>
+          </div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-header">
+            <span>Daily Progress</span>
+            <span id="progress-text">0 of 7 completed (0%)</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-bar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Day Selector -->
+      <div class="weekday-bar" id="weekday-bar"></div>
+
+      <!-- Section: Everyday Baseline -->
+      <h3 class="section-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        Every Day, No Exceptions
+      </h3>
+      <div class="task-list" id="general-task-list"></div>
+
+      <!-- Section: Day-Specific Workflow -->
+      <h3 class="section-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        Today's Specific Tasks
+      </h3>
+      <div class="task-list" id="specific-task-list"></div>
+    </section>
+
+    <!-- ================= TAB 2: WEEK ================= -->
+    <section id="tab-week" class="tab-content">
+      <div class="hero-card">
+        <div class="day-label">The 7-Day Repeating Loop</div>
+        <div class="day-title">Weekly Battle Rhythm</div>
+        <div class="day-focus">Mon batch/film → Tue post → Wed engage → Thu post → Fri buffer → Sat post → Sun review</div>
+      </div>
+
+      <!-- Monday -->
+      <div class="week-card">
+        <div class="week-card-header">
+          <span class="week-card-day">Monday (Day 1, 8, 15...)</span>
+          <span class="badge badge-gold">Batch & Film</span>
+        </div>
+        <div class="week-step"><strong>10:00 AM:</strong> Pick 3 bench units for this week + 1 backup.</div>
+        <div class="week-step"><strong>10:15 AM:</strong> Film each repair: Problem moment → Fix → Reveal. Phone propped. 5 min each.</div>
+        <div class="week-step"><strong>11:00 AM:</strong> Type <span class="trigger-tag">batch day</span> + unit list in Antigravity. Red-pen Bislish → "approved".</div>
+        <div class="week-step"><strong>5:00 PM:</strong> Confirm tomorrow's Reel A footage and caption are locked.</div>
+      </div>
+
+      <!-- Tuesday -->
+      <div class="week-card">
+        <div class="week-card-header">
+          <span class="week-card-day">Tuesday (Day 2, 9...)</span>
+          <span class="badge badge-cyan">Post 1 (Reel A)</span>
+        </div>
+        <div class="week-step"><strong>11:30 AM:</strong> Type <span class="trigger-tag">post day</span> → Reel A live on FB + Story + TikTok + Shorts.</div>
+        <div class="week-step"><strong>12:00–2:00 PM:</strong> Reply to EVERY comment. First 2 hours decide reach.</div>
+      </div>
+
+      <!-- Wednesday -->
+      <div class="week-card">
+        <div class="week-card-header">
+          <span class="week-card-day">Wednesday (Day 3, 10...)</span>
+          <span class="badge badge-gold">Engage & Check</span>
+        </div>
+        <div class="week-step"><strong>9:00 AM:</strong> Type <span class="trigger-tag">comments</span> → personally reply to repair questions (30 min).</div>
+        <div class="week-step"><strong>Double-Down Check:</strong> Any post >20k views or 10+ DMs in 48h → film Part 2 TODAY, it takes next slot.</div>
+      </div>
+
+      <!-- Thursday -->
+      <div class="week-card">
+        <div class="week-card-header">
+          <span class="week-card-day">Thursday (Day 4, 11...)</span>
+          <span class="badge badge-cyan">Post 2 (Reel B)</span>
+        </div>
+        <div class="week-step"><strong>5:30 PM:</strong> Type <span class="trigger-tag">post day</span> → Reel B live on all platforms.</div>
+        <div class="week-step"><strong>5:30–7:30 PM:</strong> Golden-hour comments triage during evening commute traffic.</div>
+      </div>
+
+      <!-- Friday -->
+      <div class="week-card">
+        <div class="week-card-header">
+          <span class="week-card-day">Friday (Day 5, 12...)</span>
+          <span class="badge badge-gold">Buffer</span>
+        </div>
+        <div class="week-step"><strong>Film Backup:</strong> Rule: Always keep 1 approved Reel in the bank.</div>
+        <div class="week-step"><strong>Rest:</strong> If backup is filmed and banked, rest. Streaks beat heroics.</div>
+      </div>
+
+      <!-- Saturday -->
+      <div class="week-card">
+        <div class="week-card-header">
+          <span class="week-card-day">Saturday (Day 6, 13...)</span>
+          <span class="badge badge-cyan">Post 3 (Reel C)</span>
+        </div>
+        <div class="week-step"><strong>1:00 PM:</strong> Type <span class="trigger-tag">post day</span> → Reel C live on all platforms.</div>
+        <div class="week-step"><strong>1:00–3:00 PM:</strong> Golden-hour comment replies during weekend leisure peak.</div>
+      </div>
+
+      <!-- Sunday -->
+      <div class="week-card">
+        <div class="week-card-header">
+          <span class="week-card-day">Sunday (Day 7, 14...)</span>
+          <span class="badge badge-green">Review</span>
+        </div>
+        <div class="week-step"><strong>6:00 PM:</strong> Type <span class="trigger-tag">sunday report</span> → read 1-page report.</div>
+        <div class="week-step"><strong>6:30 PM:</strong> Confirm next week's 3 units for Monday 10:00 AM batch filming.</div>
+      </div>
+
+      <!-- Content Sources Card -->
+      <div class="hero-card" style="margin-top: 20px;">
+        <div class="day-label">Infinite Content Engine</div>
+        <div class="day-title">Where Content Comes From</div>
+        <div class="week-step"><strong>1. BENCH:</strong> ~50–100 tickets/mo. Every interesting unit = 1 episode.</div>
+        <div class="week-step"><strong>2. COMMENTS:</strong> Agent mines 5 verbatim quotes weekly = future hooks.</div>
+        <div class="week-step"><strong>3. PART 2:</strong> Every 20k+ reel earns a sequel within 48h.</div>
+        <div class="week-step"><strong>4. SEASONS:</strong> Aug school panic, Jun-Jul floods, Mar-Apr heat, Dec scams.</div>
+        <div class="week-step"><strong>5. FORMULA:</strong> [laing shop price quote] VS [real discovery].</div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: LADDER ================= -->
+    <section id="tab-ladder" class="tab-content">
+      <div class="hero-card">
+        <div class="day-label">Growth Roadmap</div>
+        <div class="day-title">Milestone Ladder</div>
+        <div class="day-focus">50K → 100K → 250K → 500K → 1M Followers</div>
+      </div>
+
+      <!-- Stage 1 -->
+      <div class="ladder-card active-stage">
+        <div class="ladder-header">
+          <span class="ladder-tier">50K → 100K</span>
+          <span class="ladder-pace">CURRENT STAGE</span>
+        </div>
+        <div class="ladder-rule-item">
+          <strong>Cadence:</strong> 3 reels / week (Tue 11:30 AM, Thu 5:30 PM, Sat 1:00 PM)
+        </div>
+        <div class="ladder-rule-item">
+          <strong>Gate:</strong> ≥1 reel over 100K views per month.
+        </div>
+        <div class="ladder-rule-item">
+          <strong>Audit Rule:</strong> Two months with no 100K reel → type <span class="trigger-tag">handoff</span> and paste to reviewer to audit hooks.
+        </div>
+      </div>
+
+      <!-- Stage 2 -->
+      <div class="ladder-card">
+        <div class="ladder-header">
+          <span class="ladder-tier">100K → 250K</span>
+          <span class="ladder-pace">EXPANSION</span>
+        </div>
+        <div class="ladder-rule-item">
+          <strong>Cadence:</strong> Increase to 4–5 reels / week.
+        </div>
+        <div class="ladder-rule-item">
+          <strong>Signature Series:</strong> Add ONE weekly recurring show (e.g., "Scam o Dili?" every Friday). Cliffhangers drive follows.
+        </div>
+      </div>
+
+      <!-- Stage 3 -->
+      <div class="ladder-card">
+        <div class="ladder-header">
+          <span class="ladder-tier">250K → 500K</span>
+          <span class="ladder-pace">SCALE</span>
+        </div>
+        <div class="ladder-rule-item">
+          <strong>Team Delegation:</strong> Hire part-time editor or dedicated poster.
+        </div>
+        <div class="ladder-rule-item">
+          <strong>Collaborations:</strong> Monthly collaborations with trusted Cebu tech/lifestyle creators. Maintain same-day Part 2s.
+        </div>
+      </div>
+
+      <!-- Stage 4 -->
+      <div class="ladder-card">
+        <div class="ladder-header">
+          <span class="ladder-tier">500K → 1M</span>
+          <span class="ladder-pace">MAX VELOCITY</span>
+        </div>
+        <div class="ladder-rule-item">
+          <strong>Objective:</strong> High shot volume to trigger breakout reels (1M–5M views) that make the final jump.
+        </div>
+        <div class="ladder-rule-item">
+          <strong>Consistency:</strong> The system's only job is relentless volume so viral outliers happen sooner.
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 4: RULES ================= -->
+    <section id="tab-rules" class="tab-content">
+      <div class="hero-card">
+        <div class="day-label">Standard Operating Protocol</div>
+        <div class="day-title">The Never-Break Rules</div>
+        <div class="day-focus">Guaranteed viral formula — non-negotiable for all videos</div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-number">1</div>
+        <div class="rule-content">
+          <h4>Conflict Hook in First 2 Seconds</h4>
+          <p>No warm-ups or greetings. The bottom 20 videos all lacked conflict hooks. The top 15 all opened with an immediate clash.</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-number">2</div>
+        <div class="rule-content">
+          <h4>Location Overlay at 0:02 + Pinned Comment</h4>
+          <p>Display shop location within the first 2 seconds and pin Google Maps link in comments. Captures local high-intent customers immediately.</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-number">3</div>
+        <div class="rule-content">
+          <h4>Price Reveal Every Video</h4>
+          <p>State exact price transparency: ("₱800 ra — dili ₱20,000"). High-contrast price relief converts viewers into actual repair leads.</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-number">4</div>
+        <div class="rule-content">
+          <h4>ONE Call to Action (CTA) Per Video</h4>
+          <p>Never confuse viewers with multiple demands. Part 1 = "Follow para di ma-miss ang Part 2". All other posts = "Send Messenger DM".</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-number">5</div>
+        <div class="rule-content">
+          <h4>"Laing Shop" Stays Completely Generic</h4>
+          <p>Never name or identify competitors. Maintain highest integrity and avoid legal or petty local drama.</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-number">6</div>
+        <div class="rule-content">
+          <h4>Zero Customer Names or PII</h4>
+          <p>Never expose customer names, phone numbers, addresses, or private diagnostic screens in camera frames.</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-number">7</div>
+        <div class="rule-content">
+          <h4>DMs Are Always Human-Answered</h4>
+          <p>Never automate DMs with robotic bots. The owner or trained staff replies personally. This is direct revenue.</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-number">8</div>
+        <div class="rule-content">
+          <h4>Bislish Stays Yours</h4>
+          <p>AI generates technical drafts, but native Cebuano speaker personally red-pens and approves every word before filming.</p>
+        </div>
+      </div>
+
+      <!-- Roles & Ownership Summary -->
+      <div class="hero-card" style="margin-top: 20px;">
+        <div class="day-label">Team Architecture</div>
+        <div class="day-title">Division of Labor</div>
+        <div class="week-step"><strong>OWNER (~40 min/day):</strong> Film repairs, answer all DMs, red-pen Bislish, say "approved". Non-transferable.</div>
+        <div class="week-step"><strong>AGENT (Antigravity):</strong> Metrics, draft generation, publishing execution, weekly reports. Trigger-driven.</div>
+        <div class="week-step"><strong>AUDITOR (External AI):</strong> Strategy reviews, Sunday audit, diagnosing flops.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <a href="#today" class="nav-item active" data-tab="today">
+      <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+      <span>Today</span>
+    </a>
+    <a href="#week" class="nav-item" data-tab="week">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      <span>Week</span>
+    </a>
+    <a href="#ladder" class="nav-item" data-tab="ladder">
+      <svg viewBox="0 0 24 24"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+      <span>Ladder</span>
+    </a>
+    <a href="#rules" class="nav-item" data-tab="rules">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      <span>Rules</span>
+    </a>
+  </nav>
+
+  <script src="./app.js"></script>
+</body>
+</html>
